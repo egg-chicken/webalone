@@ -36,3 +36,6 @@ class Alone.BoardView
     @container.addChild(@itemsView.getContainer())
     @container.addChild(@charactersView.getContainer())
     createjs.Tween.get(@container).to(alpha: 0).to(alpha: 1, 1000)
+
+  gameOver: ->
+    createjs.Tween.get(@container).to(alpha: 0, 1000)

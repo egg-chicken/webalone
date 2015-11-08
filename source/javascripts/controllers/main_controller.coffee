@@ -24,6 +24,8 @@ class Alone.MainController
       @dealer.setupBoard()
       @view.cleanup()
       @view.bind(@dealer.board)
+    else if @dealer.boardIsFailed()
+      @view.gameOver()
 
     @view.render()
 

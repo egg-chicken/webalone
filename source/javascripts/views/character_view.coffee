@@ -3,15 +3,14 @@ class Alone.CharacterView
   HERO = "#AAFFAA"
   MONSTER = "#FFAAAA"
   constructor: (@character)->
-    @shape = new createjs.Shape()
     @color = if @character.isHero() then HERO else MONSTER
+    @shape = new createjs.Shape()
+    @shape.graphics.beginFill(@color).drawRect(0, 0, WIDTH, WIDTH)
 
   render: ->
-    @shape.graphics.clear()
     p = @character.getPosition()
-    @shape.graphics
-      .beginFill(@color)
-      .drawRect(p.x * WIDTH, p.y * WIDTH, WIDTH, WIDTH)
+    @shape.x = p.x * WIDTH
+    @shape.y = p.y * WIDTH
 
   getContainer: ->
     @shape

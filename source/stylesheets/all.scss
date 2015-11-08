@@ -1,0 +1,25 @@
+@charset "utf-8";
+$main-font: 'k8x12';
+$accent-color: #955257;
+
+// フォントは下記のサイトからダウンロードして配置する
+// http://www.geocities.jp/littlimi/k8x12.htm
+@font-face {
+  font-family: $main-font;
+  src: url('/font/k8x12.ttf') format('truetype');
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 100px;
+  font-family: $main-font;
+  color: $accent-color;
+  letter-spacing: 1em;
+  &:first-letter {
+
+  }
+}

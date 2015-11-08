@@ -10,7 +10,10 @@ class Alone.CharacterView
     @shape.y = @_position().y
 
   render: ->
-    createjs.Tween.get(@shape).to(@_position(), 100)
+    if @character.isDead()
+      @shape.visible = false
+    else
+      createjs.Tween.get(@shape).to(@_position(), 100)
 
   _position: ->
     p = @character.getPosition()

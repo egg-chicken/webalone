@@ -19,3 +19,6 @@ class Alone.CharactersView
 
 Alone.Logger.isDamaged = (character, point)->
   character.view.blink()
+
+Alone.Logger.attack = (character, target)->
+  character.view.attack(target)

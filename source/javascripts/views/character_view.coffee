@@ -17,7 +17,7 @@ class Alone.CharacterView
 
   _position: ->
     p = @character.getPosition()
-    { x: p.x * WIDTH, y: p.y * WIDTH }
+    p.times(WIDTH)
 
   blink: ->
     createjs.Tween.get(@shape)
@@ -25,6 +25,11 @@ class Alone.CharacterView
       .to(visible: false).wait(30).to(visible: true).wait(30)
       .to(visible: false).wait(30).to(visible: true)
 
+  attack: (target)->
+    direction = @character.getPosition().where(target.getPosition())
+    current = @_position()
+    next = current[direction](WIDTH/2)
+    createjs.Tween.get(@shape).to(next, 50).to(current, 50)
 
   getContainer: ->
     @shape

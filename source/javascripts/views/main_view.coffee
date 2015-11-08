@@ -1,16 +1,16 @@
 #= require ./land_view
-#= require ./character_view
+#= require ./characters_view
 
 onLoad = =>
   landView = new Alone.LandView(Alone.board.land)
   landView.render()
 
-  characterView = new Alone.CharacterView(Alone.board.getHero())
-  characterView.render()
+  charactersView = new Alone.CharactersView(Alone.board.getCharacters())
+  charactersView.render()
 
   root = new createjs.Container()
   root.addChild(landView.getContainer())
-  root.addChild(characterView.getContainer())
+  root.addChild(charactersView.getContainer())
 
   stage = new createjs.Stage("screen")
   stage.addChild(root)
@@ -18,7 +18,7 @@ onLoad = =>
 
   playRound = ->
     Alone.round()
-    characterView.render()
+    charactersView.render()
     stage.update()
 
     if Alone.boardIsCompleted()

@@ -5,6 +5,24 @@
 
 class Alone.BoardView
   constructor: (@board)->
+    @container = new createjs.Container()
+    @bind(@board)
+
+  getContainer: ->
+    @container
+
+  render: ->
+    @charactersView.render()
+    @itemsView.render()
+
+  cleanup: ->
+    @landView = null
+    @itemsView = null
+    @charactersView = null
+    @container.removeAllChildren()
+
+  bind: (board)->
+    @board = board
     @landView = new Alone.LandView(@board.land)
     @landView.render()
 
@@ -14,14 +32,6 @@ class Alone.BoardView
     @charactersView = new Alone.CharactersView(@board.getCharacters())
     @charactersView.render()
 
-    @container = new createjs.Container()
     @container.addChild(@landView.getContainer())
     @container.addChild(@itemsView.getContainer())
     @container.addChild(@charactersView.getContainer())
-
-  getContainer: ->
-    @container
-
-  render: ->
-    @charactersView.render()
-    @itemsView.render()

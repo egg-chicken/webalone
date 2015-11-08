@@ -19,7 +19,12 @@ class Alone.MainController
   _playRound: (command)->
     return if @dealer.boardIsFailed()
     @dealer.round(command)
-    @dealer.setupBoard() if @dealer.boardIsCompleted()
+
+    if @dealer.boardIsCompleted()
+      @dealer.setupBoard()
+      @view.cleanup()
+      @view.bind(@dealer.board)
+
     @view.render()
 
   _hero: ->

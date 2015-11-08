@@ -14,12 +14,10 @@ onLoad = =>
 
   stage = new createjs.Stage("screen")
   stage.addChild(root)
-  stage.update()
 
   playRound = ->
     Alone.round()
     charactersView.render()
-    stage.update()
 
     if Alone.boardIsCompleted()
       Alone.setupBoard()
@@ -27,5 +25,9 @@ onLoad = =>
       process.exit()
 
   setInterval(playRound, 1000)
+
+  tick = -> stage.update()
+  createjs.Ticker.framerate = 60
+  createjs.Ticker.addEventListener("tick", tick)
 
 document.addEventListener("DOMContentLoaded", onLoad)

@@ -7,9 +7,9 @@ class Alone.ItemsView
     @container = new createjs.Container()
     @views = []
     for item in @items
-      view = new Alone.ItemView(item)
-      @container.addChild(view.getContainer())
-      @views.push(view)
+      item.view = new Alone.ItemView(item)
+      @container.addChild(item.view.getContainer())
+      @views.push(item.view)
 
   render: ->
     for view in @views
@@ -17,3 +17,7 @@ class Alone.ItemsView
 
   getContainer: ->
     @container
+
+
+Alone.Logger.getItem = (character, item)->
+  item.view.shape.visible = false

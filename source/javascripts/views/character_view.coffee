@@ -11,13 +11,20 @@ class Alone.CharacterView
 
   render: ->
     if @character.isDead()
-      @shape.visible = false
-    else
-      createjs.Tween.get(@shape).to(@_position(), 100)
+      return @shape.visible = false
+
+    createjs.Tween.get(@shape).to(@_position(), 100)
 
   _position: ->
     p = @character.getPosition()
     { x: p.x * WIDTH, y: p.y * WIDTH }
+
+  blink: ->
+    createjs.Tween.get(@shape)
+      .to(visible: false).wait(30).to(visible: true).wait(30)
+      .to(visible: false).wait(30).to(visible: true).wait(30)
+      .to(visible: false).wait(30).to(visible: true)
+
 
   getContainer: ->
     @shape

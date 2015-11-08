@@ -6,9 +6,9 @@ class Alone.CharactersView
     @container = new createjs.Container()
     @views = []
     for character in @characters
-      view = new Alone.CharacterView(character)
-      @container.addChild(view.getContainer())
-      @views.push(view)
+      character.view = new Alone.CharacterView(character)
+      @container.addChild(character.view.getContainer())
+      @views.push(character.view)
 
   render: ->
     for view in @views
@@ -16,3 +16,6 @@ class Alone.CharactersView
 
   getContainer: ->
     @container
+
+Alone.Logger.isDamaged = (character, point)->
+  character.view.blink()

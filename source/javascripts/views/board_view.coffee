@@ -35,3 +35,4 @@ class Alone.BoardView
     @container.addChild(@landView.getContainer())
     @container.addChild(@itemsView.getContainer())
     @container.addChild(@charactersView.getContainer())
+    createjs.Tween.get(@container).to(alpha: 0).to(alpha: 1, 1000)

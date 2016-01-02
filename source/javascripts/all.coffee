@@ -1,11 +1,12 @@
-#= require corealone.min
+#= require core
 #= require views/board_view
 #= require controllers/main_controller
 
 onLoad = =>
-  dealer = new Alone.Dealer()
-  boardView = new Alone.BoardView(dealer.board)
-  controller = new Alone.MainController(dealer, boardView)
+  dungeon = new Alone.Dungeon()
+  dungeon.setup()
+  boardView = new Alone.BoardView(dungeon.board)
+  controller = new Alone.MainController(dungeon, boardView)
   controller.control()
 
   stage = new createjs.Stage("screen")

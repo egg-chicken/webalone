@@ -17,7 +17,3 @@ class Alone.ItemsView
 
   getContainer: ->
     @container
-
-
-Alone.Logger.getItem = (character, item)->
-  item.view.shape.visible = false

@@ -1,5 +1,5 @@
 class Alone.MainController
-  constructor: (@dealer, @view)->
+  constructor: (@model, @view)->
 
   control: ->
     $(document).keydown (e)=>
@@ -13,21 +13,25 @@ class Alone.MainController
         when 40 then @onPressMoveButton('down')
 
   onPressMoveButton: (direction)->
-    command = Alone.Command.createMoveOrAttack(@_hero(), direction)
+    command = new Alone.Command.MoveOrAttack(@_hero(), direction)
     @_playRound(command)
 
+  onCompleteBoard: ->
+    @model.setup()
+    @view.cleanup()
+    @view.bind(@model.board)
+
+  onFailedBoard: ->
+    @view.gameOver()
+
   _playRound: (command)->
-    return if @dealer.boardIsFailed()
-    @dealer.round(command)
-
-    if @dealer.boardIsCompleted()
-      @dealer.setupBoard()
-      @view.cleanup()
-      @view.bind(@dealer.board)
-    else if @dealer.boardIsFailed()
-      @view.gameOver()
-
+    @model.getPlayer().setCommand(command)
+    @model.round(command)
     @view.render()
+    if @model.isCompleted()
+      @onCompleteBoard()
+    else if @model.isFailed()
+      @onFailedBoard()
 
   _hero: ->
-    @dealer.board.getHero()
+    @model.getPlayer().getHero()

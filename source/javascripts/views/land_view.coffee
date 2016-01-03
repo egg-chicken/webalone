@@ -1,12 +1,22 @@
 class Alone.LandView
-  WIDTH = 8
+  WIDTH = Alone.CELL_WIDTH
   PATH = "#955257"
   EXIT = "#EEEEFF"
   constructor: (@land)->
+    @bitmap = document.getElementById("wall")
+    @container = new createjs.Container()
     @path = new createjs.Shape()
+    @wall = new createjs.Shape()
+    @container.addChild(@wall)
+    @container.addChild(@path)
 
   render: ->
-    @path.graphics.clear()
+    unless @rendered
+      @rendered = true
+      @_renderPath()
+      @_renderWall()
+
+  _renderPath: ->
     for p in @land.table.pairs()
       unless @land.isWall(p)
         color = if @land.isExit(p) then EXIT else PATH
@@ -14,5 +24,12 @@ class Alone.LandView
           .beginFill(color)
           .drawRect(p.x * WIDTH, p.y * WIDTH, WIDTH, WIDTH)
 
+  _renderWall: ->
+    for p in @land.table.pairs()
+      if @land.isWall(p)
+        @wall.graphics
+          .beginBitmapFill(@bitmap)
+          .drawRect(p.x * WIDTH, p.y * WIDTH, WIDTH, WIDTH)
+
   getContainer: ->
-    @path
+    @container

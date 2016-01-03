@@ -1,7 +1,7 @@
 #= require ./item_view
 
 class Alone.ItemsView
-  WIDTH = 8
+  WIDTH = Alone.CELL_WIDTH
   constructor: (items)->
     @items = items.list
     @container = new createjs.Container()

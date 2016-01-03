@@ -1,5 +1,5 @@
 class Alone.CharacterView
-  WIDTH = 8
+  WIDTH = Alone.CELL_WIDTH
   HERO = "#AAFFAA"
   MONSTER = "#FFAAAA"
   constructor: (@character)->

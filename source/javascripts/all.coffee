@@ -1,4 +1,5 @@
 #= require core
+#= require config
 #= require views/board_view
 #= require controllers/main_controller
 

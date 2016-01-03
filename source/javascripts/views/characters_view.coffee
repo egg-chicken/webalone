@@ -1,7 +1,7 @@
 #= require ./character_view
 
 class Alone.CharactersView
-  WIDTH = 8
+  WIDTH = Alone.CELL_WIDTH
   constructor: (@characters)->
     @container = new createjs.Container()
     @views = []

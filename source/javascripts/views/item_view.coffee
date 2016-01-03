@@ -1,5 +1,5 @@
 class Alone.ItemView
-  WIDTH = 8
+  WIDTH = Alone.CELL_WIDTH
   COLOR = "#AAAAFF"
   constructor: (@item)->
     @shape = new createjs.Shape()

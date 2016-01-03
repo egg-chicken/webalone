@@ -1,0 +1,1 @@
+Alone.CELL_WIDTH = 16

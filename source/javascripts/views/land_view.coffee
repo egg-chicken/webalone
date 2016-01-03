@@ -3,7 +3,6 @@ class Alone.LandView
   PATH = "#955257"
   EXIT = "#EEEEFF"
   constructor: (@land)->
-    @bitmap = document.getElementById("wall")
     @container = new createjs.Container()
     @path = new createjs.Shape()
     @wall = new createjs.Shape()
@@ -25,10 +24,11 @@ class Alone.LandView
           .drawRect(p.x * WIDTH, p.y * WIDTH, WIDTH, WIDTH)
 
   _renderWall: ->
+    image = document.getElementById("wall")
     for p in @land.table.pairs()
       if @land.isWall(p)
         @wall.graphics
-          .beginBitmapFill(@bitmap)
+          .beginBitmapFill(image)
           .drawRect(p.x * WIDTH, p.y * WIDTH, WIDTH, WIDTH)
 
   getContainer: ->

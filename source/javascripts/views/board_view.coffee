@@ -30,7 +30,6 @@ class Alone.BoardView
     @container.addChild(@landView.getContainer())
     @container.addChild(@itemsView.getContainer())
     @container.addChild(@charactersView.getContainer())
-    createjs.Tween.get(@container).to(alpha: 0).to(alpha: 1, 1000)
 
   gameOver: ->
     createjs.Tween.get(@container).to(alpha: 0, 1000)
@@ -41,4 +40,5 @@ class Alone.BoardView
     nextPosition =
       x: Alone.STAGE_WIDTH / 2  - hero.x * Alone.CELL_WIDTH
       y: Alone.STAGE_HEIGHT / 2 - hero.y * Alone.CELL_WIDTH
+    createjs.Tween.removeTweens(@container)
     createjs.Tween.get(@container).to(nextPosition, 100)

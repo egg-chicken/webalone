@@ -16,7 +16,7 @@ class Alone.CharacterView
   render: ->
     if @character.isDead()
       return @shape.visible = false
-
+    createjs.Tween.removeTweens(@shape)
     createjs.Tween.get(@shape).to(@_position(), 100)
 
   _position: ->

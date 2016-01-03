@@ -12,6 +12,7 @@ class Alone.BoardView
     @container
 
   render: ->
+    @_camera()
     @charactersView.render()
     @itemsView.render()
 
@@ -39,3 +40,10 @@ class Alone.BoardView
 
   gameOver: ->
     createjs.Tween.get(@container).to(alpha: 0, 1000)
+
+  _camera: ->
+    hero = @board.getHero().getPosition()
+    nextPosition =
+      x: Alone.STAGE_WIDTH / 2  - hero.x * Alone.CELL_WIDTH
+      y: Alone.STAGE_HEIGHT / 2 - hero.y * Alone.CELL_WIDTH
+    createjs.Tween.get(@container).to(nextPosition, 100)

@@ -7,6 +7,7 @@ onLoad = =>
   dungeon = new Alone.Dungeon()
   dungeon.setup()
   boardView = new Alone.BoardView(dungeon.board)
+  boardView.render()
   controller = new Alone.MainController(dungeon, boardView)
   controller.control()
 

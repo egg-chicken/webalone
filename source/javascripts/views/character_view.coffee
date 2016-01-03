@@ -1,11 +1,15 @@
 class Alone.CharacterView
   WIDTH = Alone.CELL_WIDTH
-  HERO = "#AAFFAA"
-  MONSTER = "#FFAAAA"
+  SPEED = Alone.ANIMATION_SPEED
+  CODE =
+   hero:    342
+   monster: 339
+
   constructor: (@character)->
-    color = if @character.isHero() then HERO else MONSTER
-    @shape = new createjs.Shape()
-    @shape.graphics.beginFill(color).drawRect(0, 0, WIDTH, WIDTH)
+    code = if @character.isHero() then CODE.hero else CODE.monster
+    image = document.getElementById("character")
+    sheet = @_createSheet(image, code)
+    @shape = new createjs.Sprite(sheet, "down")
     @shape.x = @_position().x
     @shape.y = @_position().y
 
@@ -33,3 +37,13 @@ class Alone.CharacterView
 
   getContainer: ->
     @shape
+
+  _createSheet: (image, code)->
+    new createjs.SpriteSheet
+      images: [image]
+      frames: { width: WIDTH, height: WIDTH }
+      animations:
+        down:  { frames: [code + 0,  code + 1,  code + 2,  code + 1],  speed: SPEED }
+        up:    { frames: [code + 16, code + 17, code + 18, code + 17], speed: SPEED }
+        left:  { frames: [code + 32, code + 33, code + 34, code + 33], speed: SPEED }
+        right: { frames: [code + 48, code + 49, code + 50, code + 49], speed: SPEED }

@@ -1,1 +1,2 @@
 Alone.CELL_WIDTH = 16
+Alone.ANIMATION_SPEED = 1/8

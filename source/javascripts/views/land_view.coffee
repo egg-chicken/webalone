@@ -13,18 +13,21 @@ class Alone.LandView
     unless @rendered
       @rendered = true
       @_renderPath()
+      @_renderExit()
       @_renderWall()
+
+  _renderExit: ->
+    image = document.getElementById("exit")
+    for p in @land.table.pairs()
+      if @land.isExit(p)
+        @path.graphics
+          .beginBitmapFill(image)
+          .drawRect(p.x * WIDTH, p.y * WIDTH, WIDTH, WIDTH)
 
   _renderPath: ->
     @path.graphics
       .beginFill(PATH)
       .drawRect(0, 0, @land.table.width * WIDTH, @land.table.height * WIDTH)
-
-    for p in @land.table.pairs()
-      if @land.isExit(p)
-        @path.graphics
-          .beginFill(EXIT)
-          .drawRect(p.x * WIDTH, p.y * WIDTH, WIDTH, WIDTH)
 
   _renderWall: ->
     image = document.getElementById("wall")

@@ -1,13 +1,23 @@
 class Alone.RectGraphic
+  WIDTH = Alone.CELL_WIDTH
+
   constructor: (color)->
     @shape = new createjs.Shape()
     @color = color
 
-  draw: (countX, countY)->
-    w = Alone.CELL_WIDTH
+  draw: (options = {})->
+    options.x ||= 0
+    options.y ||= 0
+    options.xSize ||= 1
+    options.ySize ||= 1
+
     @shape.graphics
       .beginFill(@color)
-      .drawRect(0, 0, countX * w, countY * w)
+      .drawRect(options.x, options.y, options.xSize * WIDTH, options.ySize * WIDTH)
+
+  setPosition: (p)->
+    @shape.x = p.x * WIDTH
+    @shape.y = p.y * WIDTH
 
   getShape: ->
     @shape

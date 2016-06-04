@@ -15,7 +15,7 @@ class Alone.LandView
 
   render: ->
     return if @complete
-    @path.draw(@land.table.width, @land.table.height)
+    @path.draw(xSize: @land.table.width, ySize: @land.table.height)
     for p in @land.table.pairs()
       @exit.draw(p) if @land.isExit(p)
       @wall.draw(p) if @land.isWall(p)

@@ -1,19 +1,18 @@
 class Alone.RectGraphic
   WIDTH = Alone.CELL_WIDTH
 
-  constructor: (color)->
+  constructor: (imageElementIdOrColor)->
     @shape = new createjs.Shape()
-    @color = color
+    @image = document.getElementById(imageElementIdOrColor)
+    @color = imageElementIdOrColor
 
   draw: (options = {})->
-    options.x ||= 0
-    options.y ||= 0
-    options.xSize ||= 1
-    options.ySize ||= 1
-
-    @shape.graphics
-      .beginFill(@color)
-      .drawRect(options.x, options.y, options.xSize * WIDTH, options.ySize * WIDTH)
+    @_fill().drawRect(
+      (options.x     || 0) * WIDTH,
+      (options.y     || 0) * WIDTH,
+      (options.xSize || 1) * WIDTH,
+      (options.ySize || 1) * WIDTH
+    )
 
   setPosition: (p)->
     @shape.x = p.x * WIDTH
@@ -21,3 +20,9 @@ class Alone.RectGraphic
 
   getShape: ->
     @shape
+
+  _fill: ->
+    if @image
+      @shape.graphics.beginBitmapFill(@image)
+    else
+      @shape.graphics.beginFill(@color)

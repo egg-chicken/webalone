@@ -1,4 +1,3 @@
-#= require graphics/grid_graphic
 #= require graphics/rect_graphic
 
 class Alone.LandView
@@ -6,8 +5,8 @@ class Alone.LandView
   constructor: (@land)->
     @container = new createjs.Container()
     @path = new Alone.RectGraphic("#955257")
-    @wall = new Alone.GridGraphic("wall")
-    @exit = new Alone.GridGraphic("exit")
+    @wall = new Alone.RectGraphic("wall")
+    @exit = new Alone.RectGraphic("exit")
     @container.addChild(@path.getShape())
     @container.addChild(@exit.getShape())
     @container.addChild(@wall.getShape())
